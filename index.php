@@ -14,7 +14,7 @@
             Ext.application({
                 requires: [
                     'Ext.container.Viewport',
-                    'Apm.overrider.Window',
+                    //'Apm.overrider.Window',
                     'Apm.util.Config',
                     'Apm.core.Window'
                 ],
@@ -22,12 +22,11 @@
                 appFolder: 'app',
                 
                 controllers: [
-                    'Desktop'
+                    'Desktop',
+					'Company'
                 ],
                 
                 launch: function() {
-                    
-                    
                     Ext.create('Ext.container.Viewport', {
                         layout: 'border',
                         items: [
