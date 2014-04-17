@@ -4,7 +4,6 @@ Ext.define('Apm.core.Window', {
     maximizable: true,
     title: 'Window',
     constrain: true,
-    renderTo: "main-container",
     closeAction: "destroy",
     layout: "fit",
     bodyStyle: {
@@ -17,13 +16,21 @@ Ext.define('Apm.core.Window', {
         
         // add listeners
         this.listeners = {
+            activate: this.onActive,
             beforeclose: this.onBeforeWindowClose,
             beforeshow: this.onBeforeWindowShow,
             minimize: this.onWindowMinimize
         };
         
+        // render to
+        this.renderTo = "main-container";
+        
         // default call parent
         this.callParent(arguments);
+    },
+    
+    onActive: function(win){
+        Ext.getCmp(win.animateTarget).toggle(true);
     },
     
     onBeforeWindowClose: function(){
@@ -36,10 +43,12 @@ Ext.define('Apm.core.Window', {
         if(typeof btntask == "undefined"){
             btntask = Ext.create('Ext.button.Button', {
                 text: win.title,
+                tooltip: win.title,
                 id: win.animateTarget,
                 iconCls: win.iconCls,
                 toggleGroup: "btntask",
                 enableToggle: true,
+                maxWidth: 120,
                 listeners: {
                     afterrender: function(){
                         this.toggle(true);

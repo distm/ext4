@@ -6,12 +6,15 @@ Ext.define("Apm.controller.Company", {
 	],
 	
 	views: [
-		'company.GridContext'
+		'company.GridContext',
+		'company.WindowDetail',
+		'company.DetailGeneral'
 	],
 	
 	init: function(){
 		
 		this.control({
+            // toolbar handler
 			"toolbar [action='add-company']": {
 				click: this.addCompany
 			},
@@ -19,9 +22,15 @@ Ext.define("Apm.controller.Company", {
 				click: this.searchCompany
 			},
 			
+            // grid row handler
 			"grid-company": {
 				itemcontextmenu: this.showContextMenu
-			}
+			},
+            
+            // context menu handler
+            "[action='detail-company']": {
+                click: this.detailCompany
+            }
 		});
 	
 	},
@@ -93,6 +102,24 @@ Ext.define("Apm.controller.Company", {
 				input_cmp.setValue("").focus();
 			});
 		}
-	} // end of searchCompany
+	}, // end of searchCompany
+    
+    
+    detailCompany: function(){
+        var rec = this.selectedRecord,
+            code = rec.get("code"),
+            win = Ext.getCmp("win-detail-company-"+ code);
+    
+        if(! win){
+            win = Ext.widget("win-detail-company", {
+                title: code +" - "+ rec.get("name"),
+                id: "win-detail-company-"+ code
+            });
+        }
+        
+        win.show(null, function(){
+            this.down("form").loadRecord(rec);
+        });
+    }
 	
 });

@@ -4,7 +4,7 @@ Ext.define('Apm.view.company.Window', {
     id: "win-company",
     
     width: 850,
-    height: 450,
+    height: 400,
     
     items: [
         {xtype: 'grid-company'}

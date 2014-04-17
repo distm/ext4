@@ -3,6 +3,7 @@ Ext.define("Apm.view.desktop.Taskbar", {
     alias: "widget.taskbar",
     id: "taskbar",
     
+    enableOverflow: true,
     initComponent: function(){
         this.items = [
             {

@@ -11,27 +11,15 @@ Ext.define("Apm.view.company.GridContext", {
 				text: "Edit",
 				action: "edit-company"
 			},
-			{
-				text: "Delete",
-				action: "delete-company"
-			},
-			'-',
-			{
-				text: "Info",
-				menu: {
-					items: [
-						{
-							text: "Detail"
-						},
-						{
-							text: "Quote Stock"
-						},
-						{
-							text: "Subsidiaries"
-						}
-					]
-				}
-			}
+            {
+                text: "Detail",
+				action: "detail-company"
+            },
+            '-',
+            {
+                text: "Quote Stock",
+				action: "quote-company"
+            }
 		];
 	
 		this.callParent(arguments);
